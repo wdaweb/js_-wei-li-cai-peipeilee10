@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //製作隨機數字 function，提供最小整數和最大整數，回傳count的隨機不重複整數陣列
+    function rand(min, max, count) {
+      let randArr = [];
+      let limitCount = 0;
+      while (limitCount < count){
+        let num = Math.round(Math.random() * (max - min) + min);
+        //不重複
+        if (randArr.indexOf(num) == -1){
+          randArr.push(num);
+          limitCount++;
+        }
+      }
+      return randArr;
+    }
+
+    /*用上面練習完成的 function 製作威力彩號碼產生器
+      將隨機出的數字用 document.write() 顯示在網頁上
+      威力彩規則
+      A 區 1~38 取 6 個數字
+      B 區 1~8 取 1 個數字*/
+
+    let randomA = rand(1, 38, 38);
+
+    //陣列的自定義排序，假如由小排到大，則為a - b，反之則為b - a
+    /*randomA.sort(function (a, b){
+      return b - a;
+    });*/
+
+    let randomB = rand(1, 8, 1);
+
+    document.write(randomA + '<br>');
+    document.write(randomB + '<br>');
+
+
+    //老師解法
+
+    const groupA = [];
+    for(let i = 0;i < 6 ;i++){
+      //隨機取一個數
+      const num = rand(1,38)
+      if(groupA.includes(num)){
+        //如果重複了迴圈再跑一次(數量(count)減一)
+        i--
+      }else{
+        //如果沒有重複，放進A陣列
+        groupA.push(num)
+      }
+
+    }
+  </script>
+</body>
+
+</html>
